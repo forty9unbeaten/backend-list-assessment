@@ -18,21 +18,41 @@
 
 
 def remove_adjacent(nums):
-    """Your code goes here.  Edit this docstring."""
-    return
+    return [nums[i] for i in range(0, len(nums)) if
+            (i == len(nums) - 1) or (nums[i] != nums[i + 1])]
 
-
-# E. Given two lists sorted in increasing order, create and return a merged
-# list of all the elements in sorted order. You may modify the passed in lists.
-# The solution should work in "linear" time, making a single pass of both lists.
+# E. Given two lists sorted in increasing order,
+# create and return a merged list of all the elements
+# in sorted order. You may modify the passed in lists.
+# The solution should work in "linear" time, making a
+# single pass of both lists.
 # Hint: Don't use `sort` or `sorted` -- they are not linear time.
+
+
 def linear_merge(list1, list2):
-    """Your code goes here.  Edit this docstring."""
-    return
+    comboList = []
+
+    # while list1 & list2 aren't empty, cpmare the values
+    # of the last elements in each list
+    while list1 and list2:
+        if list1[-1] > list2[-1]:
+            comboList.append(list1.pop(-1))
+        else:
+            comboList.append(list2.pop(-1))
+
+    # if anything is left over in either list, add it
+    # to comboList and return the resulting array in
+    # reverse order
+    if len(list1):
+        comboList += list1
+    elif len(list2):
+        comboList += list2
+    return comboList[::-1]
+
+    # Simple provided test() function used in main() to print
+    # what each function returns vs. what it's supposed to return.
 
 
-# Simple provided test() function used in main() to print
-# what each function returns vs. what it's supposed to return.
 def test(got, expected):
     if got == expected:
         prefix = ' OK '
